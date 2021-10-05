@@ -49,6 +49,7 @@ void procurar(char nome[25]){
 		if(de[0] == nome[0]){
 			printf("\nTelefones encontrados\n");
 			printf(" %d - %s \n", ptr->telefone,ptr->nome);
+			sleep(2);
 		};
 		ptr = ptr->proxima;
 		if(de[0] != nome[0]){
@@ -87,6 +88,10 @@ struct contato* remover( long telefone) {
 }
 
 int main() {
+	long tel;
+	int opcao,op;
+	char nome[25];
+	
 	//Adicionando numeros de contatos aleatorios 
     adicionar(991686501, "Samuel Zanferdini Oliva");
     adicionar(988296172, "Lucas Balani Ferreira");
@@ -98,8 +103,76 @@ int main() {
     adicionar(999636266, "Matheus Jose Carneio");
 	adicionar(991731339, "Bruno Fucherberger");
     adicionar(981526314, "Jeferson Ricardo Do");
+   
+   do {
+   	system ("cls");
+   	  printf("---###--LISTA DE CONTATOS--###---\n");
+
+          printf("\n       ####### MENU #######\n\n");
+          printf("   ( 1 ) CADASTRAR CONTATO \n");
+          printf("   ( 2 ) CONSULTAR UM CONTATO POR LETRA \n");
+          printf("   ( 3 ) LISTAR TODOS OS CONTATOS \n");
+          printf("   ( 4 ) EXCLUIR UM CONTATO \n");
+          printf("   ( 5 ) SAIR \n");
+          
+           printf("\n ESCOLHA UMA OPCAO:");
+          scanf("%d",&opcao);
+          fflush(stdin);
+          
+          switch(opcao) {
+          	case 1:
+          		printf("\n--**** CADASTRO DE CONTATO ****--");
+          		 printf("\n NOME:");
+          		 scanf("%s",&nome);
+          		 printf("\n TEL:");
+          		 scanf("%i",&tel);
+          		 adicionar(tel, nome);
+          		 fflush(stdin);
+                 break;
+            case 2:
+            	system("cls");
+                         printf("\n--**** CONSULTAR UM CONTATO POR LETRA ****--");
+                         printf("\nPESQUISAR:");
+                         scanf("%s",&nome);
+                         procurar(nome);
+                        system("pause");
+                       break;
+            case 3:
+            	mostrar();
+            	system("pause");
+                       break;
+            case 4:
+            	printf("\n--###----EXCLUIR CONTATO----###--\n");
+                printf("\nINFORMA O TELEFONE: ");
+                scanf("%i",&tel);
+                remover(tel);
+                system("pause");
+                break;
+            case 5:
+            	system ("cls");
+                  printf ("\n     Informações dos Alunos:\n\n");
+                  printf ("     RA: 202002220112 - BRUNO FUCHERBERGER PEREIRA\n");
+                  printf ("     RA: 202002346906 - Matheus JOSE CARNEIRO DOS SANTOS\n");
+                  printf ("     RA: 202002394961 - Kirgor G.\n");
+                  printf ("     Unidade: ESTACIO - RIBEIRÃO PRETO\n");
+                  printf ("     Curso: Ciência da Computacao \n");
+                  printf ("     Disciplina: ESTRUTURA DE DADOS EM C\n");
+                  printf ("     Professora: Samuel\n\n");
+             
+
+                  getchar();
+                  printf("\nObrigado pela visita , Volte Sempre!!\n");
+                  system("exit");
+                  break;
+		  }
+
+   }while(opcao!=5);
+   
    //mostrando a lista
+   
     mostrar();
+    
+    
     
     //procurando por letra
     procurar("Z");
